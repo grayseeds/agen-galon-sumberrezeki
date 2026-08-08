@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MineralPur - Layanan Pesan Antar Air Mineral</title>
+<!-- Material Symbols for Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS (Include required configuration from prompt) -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#a5c8ff",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#303030",
+                        "secondary-fixed-dim": "#bac9d3",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#1976d2",
+                        "tertiary": "#944700",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#ba5b00",
+                        "on-secondary-fixed": "#0f1d25",
+                        "primary": "#005dac",
+                        "primary-fixed-dim": "#a5c8ff",
+                        "on-tertiary-container": "#fffeff",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed-variant": "#733600",
+                        "surface-container-high": "#eae7e7",
+                        "secondary-fixed": "#d6e5ef",
+                        "surface-dim": "#dcd9d9",
+                        "outline-variant": "#c1c6d4",
+                        "on-primary-fixed": "#001c3a",
+                        "on-tertiary-fixed": "#311300",
+                        "surface": "#fcf9f8",
+                        "on-surface-variant": "#414752",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f0eded",
+                        "on-surface": "#1b1c1c",
+                        "inverse-on-surface": "#f3f0ef",
+                        "primary-fixed": "#d4e3ff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d3e2ed",
+                        "background": "#fcf9f8",
+                        "on-primary-fixed-variant": "#004786",
+                        "outline": "#717783",
+                        "surface-container-low": "#f6f3f2",
+                        "on-secondary-fixed-variant": "#3b4951",
+                        "secondary": "#526069",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-tint": "#005faf",
+                        "on-background": "#1b1c1c",
+                        "tertiary-fixed": "#ffdbc7",
+                        "surface-variant": "#e5e2e1",
+                        "on-secondary-container": "#56656e",
+                        "tertiary-fixed-dim": "#ffb688",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#fffdff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "xxl": "80px",
+                        "lg": "24px",
+                        "xl": "48px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<!-- Inter Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        /* Remove number input arrows */
+        input[type="number"]::-webkit-inner-spin-button, 
+        input[type="number"]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; margin: 0; 
+        }
+        input[type="number"] { -moz-appearance: textfield; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen antialiased">
+<!-- TopNavBar Component -->
+<header class="bg-surface/90 dark:bg-surface-dim/90 font-body-md text-body-md docked full-width top-0 sticky z-50 border-b border-outline-variant dark:border-outline flat no shadows backdrop-blur-sm">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-lg py-sm">
+<!-- Brand -->
+<a class="flex items-center gap-sm" href="#">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Agen Galon Sumber Rezeki</span>
+</a>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-primary dark:text-primary-fixed-dim font-semibold border-b-2 border-primary pb-1" href="#beranda">Beranda</a>
+<a class="text-on-surface-variant dark:text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#produk">Produk</a>
+<a class="text-on-surface-variant dark:text-on-surface hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#pesan">Pesan</a>
+</nav>
+<!-- CTA -->
+<div class="hidden md:block">
+<a class="bg-primary-container text-on-primary font-label-md text-label-md px-md py-sm rounded-lg hover:opacity-90 transition-opacity" href="#pesan">
+                    Pesan Sekarang
+                </a>
+</div>
+<!-- Mobile Menu Toggle -->
+<button aria-label="Menu" class="md:hidden text-primary p-sm" id="mobile-menu-btn">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+<!-- Mobile Nav Dropdown (Hidden by default) -->
+<div class="md:hidden hidden bg-surface border-b border-outline-variant px-lg py-md flex-col gap-md" id="mobile-menu">
+<a class="text-primary font-semibold block py-xs" href="#beranda">Beranda</a>
+<a class="text-on-surface-variant block py-xs" href="#produk">Produk</a>
+<a class="text-on-surface-variant block py-xs" href="#pesan">Pesan</a>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="pt-xxl pb-xl px-lg max-w-container-max mx-auto text-center md:text-left flex flex-col md:flex-row items-center gap-xl" id="beranda">
+<div class="flex-1 space-y-lg">
+<h1 class="font-display-lg text-display-lg text-on-surface">Air Mineral Segar, <br class="hidden md:block"/> Siap Diantar</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Pesan air mineral dengan mudah. Pilih kebutuhan Anda dan langsung kirim pesanan melalui WhatsApp. Kami siap mengantar ke lokasi Anda.
+            </p>
+<div class="pt-sm">
+<a class="inline-flex items-center justify-center bg-primary-container text-on-primary font-label-md text-label-md px-xl py-md rounded-lg hover:opacity-90 transition-opacity" href="#pesan">
+                    Pesan Sekarang
+                </a>
+</div>
+</div>
+<div class="flex-1 w-full max-w-md md:max-w-none">
+<div class="aspect-square bg-surface-container-low rounded-xl border border-outline-variant flex items-center justify-center p-xl relative overflow-hidden">
+<img src="IMG_5997.PNG"
+</div>
+</div>
+</section>
+<!-- Pilihan Produk Section (Bento Grid Style) -->
+<section class="py-xl px-lg max-w-container-max mx-auto" id="produk">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Pilihan Produk</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Pilih produk yang Anda butuhkan</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg" id="product-grid">
+<!-- Products will be injected here by JS -->
+</div>
+</section>
+<!-- Cara Pesan Section -->
+<section class="py-xl bg-surface-container-low px-lg">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Cara Pesan</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg text-center">
+<!-- Step 1 -->
+<div class="flex flex-col items-center space-y-md">
+<div class="w-16 h-16 rounded-full bg-primary-fixed text-primary-fixed-dim flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[32px]" data-icon="shopping_basket">shopping_basket</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Pilih Produk</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Tentukan jumlah produk yang ingin Anda pesan.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center space-y-md">
+<div class="w-16 h-16 rounded-full bg-primary-fixed text-primary-fixed-dim flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[32px]" data-icon="edit_document">edit_document</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Isi Data</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Lengkapi form dengan data diri dan alamat tujuan.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center space-y-md">
+<div class="w-16 h-16 rounded-full bg-primary-fixed text-primary-fixed-dim flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-[32px]" data-icon="send">send</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Kirim Pesanan</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Kirim detail pesanan langsung via WhatsApp.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Formulir Pesanan Section -->
+<section class="py-xxl px-lg max-w-3xl mx-auto" id="pesan">
+<div class="bg-surface border border-outline-variant rounded-xl p-xl shadow-sm">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xl text-center">Formulir Pesanan</h2>
+<form class="space-y-lg" id="order-form">
+<!-- Selected Products Summary -->
+<div class="bg-surface-container-low p-lg rounded-lg border border-outline-variant mb-xl">
+<h3 class="font-label-md text-label-md text-on-surface mb-md">Pesanan Anda</h3>
+<div class="space-y-sm" id="order-summary">
+<p class="font-body-md text-body-md text-on-surface-variant italic">Belum ada produk yang dipilih.</p>
+</div>
+<div class="hidden mt-sm text-error font-caption text-caption" id="product-error">Silakan pilih minimal 1 produk.</div>
+</div>
+<!-- Personal Info -->
+<div class="space-y-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="nama">Nama Lengkap</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="nama" name="nama" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="whatsapp">Nomor WhatsApp</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="whatsapp" name="whatsapp" placeholder="Contoh: 0812..." required="" type="tel"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="alamat">Alamat Pengantaran Lengkap</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="alamat" name="alamat" required="" rows="3"></textarea>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs" for="catatan">Catatan (Opsional)</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="catatan" name="catatan" placeholder="Contoh: Titip di pos satpam" rows="2"></textarea>
+</div>
+</div>
+<div class="pt-lg">
+<button class="w-full flex items-center justify-center gap-sm bg-primary-container text-on-primary font-label-md text-label-md px-xl py-md rounded-lg hover:opacity-90 transition-opacity" type="submit">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+                        KIRIM PESAN VIA WHATSAPP
+                    </button>
+</div>
+</form>
+</div>
+</section>
+<!-- Footer Component -->
+<footer class="bg-surface-container-low dark:bg-surface-container-highest font-body-md text-body-md full-width mt-xxl border-t border-outline-variant dark:border-outline flat no shadows">
+<div class="flex flex-col items-center text-center py-xl px-lg max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface mb-sm">
+                Agen Galon Sumber Rezeki
+            </div>
+<p class="text-on-surface-variant dark:text-on-secondary-fixed-variant mb-lg max-w-md">
+                Layanan pesan antar air mineral berkualitas untuk kebutuhan harian Anda. Bersih, segar, dan terpercaya.
+            </p>
+<div class="flex gap-lg mb-xl">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">WhatsApp Kami</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Syarat &amp; Ketentuan</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Kebijakan Privasi</a>
+</div>
+<div class="text-on-surface-variant font-caption text-caption">
+                © Agen Galon Sumber Rezeki. Layanan Pesan Antar Air Mineral Berkualitas.
+            </div>
+</div>
+</footer>
+<!-- Logic Script -->
+<script>
+        // Configuration
+        const whatsappNumber = "6281944516261";
+        const products = [
+            { id: "Le-Minerale-Galon-15L", name: "Le Minerale Galon 15L" },
+            { id: "Aqua-Galon-19L", name: "Aqua Galon 19L" },
+            { id: "Le-Minerale-600ml", name: "Le Minerale 600ml" },
+            { id: "Barangan-Aspen-250ml", name: "Barangan Aspen 250ml" },
+        ];
+        
+        // State
+        let orderQuantities = {
+            "Le-Minerale-Galon-15L": 0,
+            "Aqua-Galon-19L": 0,
+            "Le-Minerale-600ml": 0,
+            "Barangan-Aspen-250ml": 0,
+        };
+
+        // DOM Elements
+        const productGrid = document.getElementById('product-grid');
+        const orderSummary = document.getElementById('order-summary');
+        const productError = document.getElementById('product-error');
+        const orderForm = document.getElementById('order-form');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        // Initialize Product Grid
+        function renderProducts() {
+            productGrid.innerHTML = products.map(product => `
+                <div class="bg-surface border border-outline-variant rounded-xl p-lg flex flex-col items-center justify-between text-center min-h-[200px]">
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-md">${product.name}</h3>
+                    
+                    <div class="flex items-center gap-md mt-auto">
+                        <button type="button" onclick="updateQty('${product.id}', -1)" class="w-8 h-8 rounded-full border border-primary text-primary flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+                            <span class="material-symbols-outlined text-[20px]" data-icon="remove">remove</span>
+                        </button>
+                        <span id="qty-${product.id}" class="font-body-lg text-body-lg text-on-surface w-8">${orderQuantities[product.id]}</span>
+                        <button type="button" onclick="updateQty('${product.id}', 1)" class="w-8 h-8 rounded-full border border-primary bg-primary text-on-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-colors">
+                            <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update Quantity
+        window.updateQty = function(productId, change) {
+            let newQty = orderQuantities[productId] + change;
+            if (newQty < 0) newQty = 0;
+            orderQuantities[productId] = newQty;
+            
+            document.getElementById(`qty-${productId}`).innerText = newQty;
+            updateOrderSummary();
+        };
+
+        // Update Order Summary in Form
+        function updateOrderSummary() {
+            let hasProducts = false;
+            let summaryHTML = '';
+            
+            products.forEach(product => {
+                const qty = orderQuantities[product.id];
+                if (qty > 0) {
+                    hasProducts = true;
+                    summaryHTML += `
+                        <div class="flex justify-between items-center py-xs border-b border-outline-variant last:border-0">
+                            <span class="font-body-md text-body-md text-on-surface">${product.name}</span>
+                            <div class="flex items-center gap-sm">
+                                <button type="button" onclick="updateQty('${product.id}', -1)" class="text-primary hover:text-primary-container">
+                                    <span class="material-symbols-outlined text-[16px]" data-icon="remove_circle">remove_circle</span>
+                                </button>
+                                <span class="font-label-md text-label-md text-on-surface w-4 text-center">${qty}</span>
+                                <button type="button" onclick="updateQty('${product.id}', 1)" class="text-primary hover:text-primary-container">
+                                    <span class="material-symbols-outlined text-[16px]" data-icon="add_circle">add_circle</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if (hasProducts) {
+                orderSummary.innerHTML = summaryHTML;
+                productError.classList.add('hidden');
+            } else {
+                orderSummary.innerHTML = `<p class="font-body-md text-body-md text-on-surface-variant italic">Belum ada produk yang dipilih.</p>`;
+            }
+        }
+
+        // Handle Form Submission
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Check if at least one product is selected
+            let totalQty = 0;
+            let orderDetailsText = "";
+            
+            products.forEach(product => {
+                const qty = orderQuantities[product.id];
+                totalQty += qty;
+                if (qty > 0) {
+                    orderDetailsText += `- ${product.name}: ${qty}\n`;
+                }
+            });
+
+            if (totalQty === 0) {
+                productError.classList.remove('hidden');
+                document.getElementById('produk').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+
+            // Gather Form Data
+            const nama = document.getElementById('nama').value.trim();
+            const wa = document.getElementById('whatsapp').value.trim();
+            const alamat = document.getElementById('alamat').value.trim();
+            const catatan = document.getElementById('catatan').value.trim();
+
+            // Construct WhatsApp Message
+            let message = `Halo Sumber Rezeki, saya ingin memesan air mineral:\n\n`;
+            message += `*Data Pemesan:*\n`;
+            message += `Nama: ${nama}\n`;
+            message += `No. WA: ${wa}\n`;
+            message += `Alamat: ${alamat}\n\n`;
+            
+            message += `*Detail Pesanan:*\n`;
+            message += orderDetailsText;
+            
+            if (catatan) {
+                message += `\n*Catatan:* ${catatan}`;
+            }
+
+            // Encode and redirect
+            const encodedMessage = encodeURIComponent(message);
+            const waURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            window.open(waURL, '_blank');
+        });
+
+        // Init
+        renderProducts();
+    </script>
+</body></html>
